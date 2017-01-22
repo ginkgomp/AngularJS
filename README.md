@@ -6,3 +6,8 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 - Models, Views and Controllers [(notes)](https://www.evernote.com/l/ATFtERzfOPRJSbke1R0aRnVd8SVqGktRHKo)
 * Angular filter [(notes)](https://www.evernote.com/l/ATHHcL5TEo9Ouo679CxXDEXIpaLeGQooLlw)
 
+:point_up: Assignment 1 Done.
+
+*****
+
+##Week #2:
