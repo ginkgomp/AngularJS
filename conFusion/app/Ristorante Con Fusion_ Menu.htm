@@ -44,8 +44,9 @@
             </div>
             <div class="col-xs-9 col-xs-offset-1">
                 <h4>Customer Comments</h4>
-                <label for="sort" class="inline">Sort by: </label> <input type="text" id="sort" ng-keypress="'author'" ng-class="{reverse: reverse}"/>
-                <blockquote ng-repeat="di in dishCtrl.dish.comments">
+                <label for="sort">Sort by: </label> 
+                <input type="text" id="sort" ng-model="dishCtrl.sort"/>
+                <blockquote ng-repeat="di in dishCtrl.dish.comments | orderBy:dishCtrl.sort">
                   <p>{{di.rating}} Stars</p>    
                   <p>{{di.comment}}</p>
                   <footer>{{di.author}}, {{di.date | date:'MMM. d, y'}}</footer>
@@ -70,7 +71,7 @@
                           label:'Hot',
                           price:'4.99',
                           description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-                           comments: [
+                          comments: [
                                {
                                    rating:5,
                                    comment:"Imagine all the eatables, living in conFusion!",
@@ -105,7 +106,9 @@
                            ]
                     };
             
-            this.dish = dish;
+            this.dish=dish;
+            var sort='';
+ 
             
         });
 
