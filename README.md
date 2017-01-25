@@ -11,3 +11,4 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 *****
 
 ##Week #2:
+* Web Tools: Grunt and Gulp
