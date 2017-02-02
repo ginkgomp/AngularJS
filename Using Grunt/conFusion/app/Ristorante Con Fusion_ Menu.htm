@@ -26,13 +26,13 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-controller="dishDetailController as dishCtrl">
+        <div class="row row-content" ng-controller="DishDetailController">
             <div class="col-xs-12">
                 <ul class="media-list">
                   <li class="media">
                     <div class="media-left">
                       <a href="#">
-                        <img class="media-object" src="/app/images/uthapizza.png" alt="Uthapizza">
+                        <img class="media-object" src="../app/images/uthapizza.png" alt="Uthapizza">
                       </a>
                     </div>
                     <div class="media-body">
@@ -45,8 +45,8 @@
             <div class="col-xs-9 col-xs-offset-1">
                 <h4>Customer Comments</h4>
                 <label for="sort">Sort by: </label> 
-                <input type="text" id="sort" ng-model="dishCtrl.sort"/>
-                <blockquote ng-repeat="di in dishCtrl.dish.comments | orderBy:dishCtrl.sort">
+                <input type="text" id="sort" ng-model="sort"/>
+                <blockquote ng-repeat="di in dish.comments | orderBy:sort">
                   <p>{{di.rating}} Stars</p>    
                   <p>{{di.comment}}</p>
                   <footer>{{di.author}}, {{di.date | date:'MMM. d, y'}}</footer>
@@ -60,11 +60,9 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script>
 
-        var app = angular.module('confusionApp',[]);
-        
-        app.controller('dishDetailController', function() {
+   angular.module('confusionApp',[]).controller('DishDetailController',['$scope', function($scope) {
             
-            var dish={
+            $scope.dish={
                           name:'Uthapizza',
                           image: 'images/uthapizza.png',
                           category: 'mains', 
@@ -106,11 +104,11 @@
                            ]
                     };
             
-            this.dish=dish;
-            var sort='';
+
+        var sort='';
  
             
-        });
+        }]);
 
     </script>
 

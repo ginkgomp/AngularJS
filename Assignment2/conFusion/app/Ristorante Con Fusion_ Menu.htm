@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="confusionApp">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head
+         content must come *after* these tags -->
+    <title>Ristorante Con Fusion: Menu</title>
+        <!-- Bootstrap -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/bootstrap-social.css" rel="stylesheet">
+    <link href="styles/mystyles.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="DishDetailController">
+            <div class="col-xs-12">
+                <ul class="media-list">
+                  <li class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="../app/images/uthapizza.png" alt="Uthapizza">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">Uthapizza <span class="label label-danger label-xs">Hot</span> <span class="badge">$4.99</span></h2>
+                      <p>A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
+                    </div>
+                  </li>
+                </ul>
+            </div>
+            <div class="col-xs-9 col-xs-offset-1">
+                <h4>Customer Comments</h4>
+                <label for="sort">Sort by: </label> 
+                <input type="text" id="sort" ng-model="sort"/>
+                <blockquote ng-repeat="di in dish.comments | orderBy:sort">
+                  <p>{{di.rating}} Stars</p>    
+                  <p>{{di.comment}}</p>
+                  <footer>{{di.author}}, {{di.date | date:'MMM. d, y'}}</footer>
+                </blockquote>
+            </div>
+            
+            <div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
+                    <ul class="list-unstyled">
+						<blockquote ng-show="commentForm.$valid && !commentForm.$pristine">
+                         <p>{{comment.rating}} Stars</p>
+                         <p>{{comment.comments}}</p>
+                         <footer>{{comment.name}}, {{date | date:'MM. d, y'}}</footer>    
+                        </blockquote>
+                    </ul>
+                <form class="form-horizontal" name="commentForm"
+                		ng-submit="submitComment()" novalidate>
+					<div class="form-group" ng-class="{ 'has-error' : commentForm.name.$error.required && !commentForm.name.$pristine }">
+                     <label for="name" class="col-sm-3 control-label">Your Name</label>
+                     <div class="col-sm-9">
+                       <input type="text" class="form-control" id="name" name="name" ng-model="comment.name" required>
+                         <span ng-show="commentForm.name.$error.required && !commentForm.name.$pristine" class="help-block">Your name is required.</span>
+                     </div>
+                    </div>
+                    <div class="form-group">
+                     <label for="rating" class="col-sm-3 control-label">Number of Stars</label>
+                    <div class="col-sm-9">    
+                        <label class="radio-inline">
+                      <input type="radio" class="form-check-input" name="rate1" id="rate1" value="rate1"> 1 
+                        </label>
+                         <label class="radio-inline">
+                      <input type="radio" class="form-check-input" name="rate2" id="rate2" value="rate2"> 2
+                        </label>
+                         <label class="radio-inline">
+                      <input type="radio" class="form-check-input" name="rate3" id="rate3" value="rate3"> 3
+                        </label>
+                         <label class="radio-inline">
+                      <input type="radio" class="form-check-input" name="rate4" id="rate4" value="rate4"> 4 
+                        </label>
+                         <label class="radio-inline">
+                      <input type="radio" class="form-check-input" name="rate5" id="rate5" value="rate5" checked> 5
+                        </label>
+                     </div>
+                    </div>
+                    <div class="form-group" ng-class="{ 'has-error' : commentForm.comments.$error.required  && !commentForm.comments.$pristine}">
+                     <label for="comments" class="col-sm-3 control-label">Your Comments</label>
+                     <div class="col-sm-9">
+                       <textarea class="form-control" id="comments" name="comments" ng-model="comment.comments" required></textarea>
+                         <span ng-show="commentForm.comments.$error.required && !commentForm.comments.$pristine" class="help-block">Your comment is required.</span>
+                     </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                            <button type="submit" class="btn btn-primary" ng-disabled="commentForm.$invalid">Submit Comment</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script>
+
+   angular.module('confusionApp',[]).controller('DishDetailController',['$scope', function($scope) {
+            
+            $scope.dish={
+                          name:'Uthapizza',
+                          image: 'images/uthapizza.png',
+                          category: 'mains', 
+                          label:'Hot',
+                          price:'4.99',
+                          description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
+                          comments: [
+                               {
+                                   rating:5,
+                                   comment:"Imagine all the eatables, living in conFusion!",
+                                   author:"John Lemon",
+                                   date:"2012-10-16T17:57:28.556094Z"
+                               },
+                               {
+                                   rating:4,
+                                   comment:"Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
+                                   author:"Paul McVites",
+                                   date:"2014-09-05T17:57:28.556094Z"
+                               },
+                               {
+                                   rating:3,
+                                   comment:"Eat it, just eat it!",
+                                   author:"Michael Jaikishan",
+                                   date:"2015-02-13T17:57:28.556094Z"
+                               },
+                               {
+                                   rating:4,
+                                   comment:"Ultimate, Reaching for the stars!",
+                                   author:"Ringo Starry",
+                                   date:"2013-12-02T17:57:28.556094Z"
+                               },
+                               {
+                                   rating:2,
+                                   comment:"It's your birthday, we're gonna party!",
+                                   author:"25 Cent",
+                                   date:"2011-12-02T17:57:28.556094Z"
+                               }
+                               
+                           ]
+                    };
+            
+
+        var sort='';
+ 
+            
+        }])
+   
+   .controller('DishCommentController', ['$scope', function($scope) {
+            
+            $scope.comment = {name:"", rating:5, comments:""};   
+       
+      
+            $scope.submitComment = function () {
+                 if(!$scope.commentForm.$pristine && $scope.commentForm.name.$error.required &&  $scope.commentForm.comments.$error.required){
+       console.log('incorrect form');
+                 }else{
+                //Step 2: This is how you record the date
+              $scope.date = new Date().toISOString();
+                
+                // Step 3: Push your comment into the dish's comment array
+                 $scope.dish.comments.push({                rating:$scope.comment.rating,
+                    comment:$scope.comment.comments, author:$scope.comment.name,
+                    date:$scope.date });
+                
+                //Step 4: reset your form to pristine
+               
+                $scope.commentForm.$setPristine();
+                
+                //Step 5: reset your JavaScript object that holds your comment
+                
+                  $scope.comment = {};   
+       
+           
+       }
+            };
+       
+       
+        }])
+   
+   
+   ;
+
+    </script>
+
+
+
+
+</body></html>

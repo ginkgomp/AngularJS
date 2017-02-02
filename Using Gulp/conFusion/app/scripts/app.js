@@ -1,3 +1,4 @@
+
 'use strict';
 
         angular.module('confusionApp',[]).controller('MenuController', ['$scope',function($scope) {
@@ -94,5 +95,3 @@
                 }
             };
         }]);
-
- 
