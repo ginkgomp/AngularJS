@@ -14,3 +14,10 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 * Web Tools: Grunt and Gulp
 - Angular Scope
 * Angular Forms and form validation 
+
+:point_up: Assignment 2 Done.
+
+*****
+
+##Week #3:
+* Angular Factory, Service and Dependency Injection 
