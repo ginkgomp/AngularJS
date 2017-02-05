@@ -22,3 +22,4 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 ##Week #3:
 * Angular Factory, Service and Dependency Injection 
 - Angular Templates 
+* Angular ngRoute and Single Page Applications
