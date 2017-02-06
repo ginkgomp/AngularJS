@@ -1,52 +1,16 @@
 
 'use strict';
 
-        angular.module('confusionApp').controller('MenuController', ['$scope',function($scope) {
+  angular.module('confusionApp').controller('MenuController', ['$scope','menuFactory',function($scope, menuFactory) {
             $scope.tab = 1;
         
              $scope.filtText = '';
 
             $scope.showDetails = false;
             
-            $scope.dishes=[
-                         {
-                           name:'Uthapizza',
-                           image: 'images/uthapizza.png',
-                           category: 'mains',
-                           label:'Hot', 
-                           price:'4.99',
-                           description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-                           comment: ''
-                        },
-                      {
-                           name:'Zucchipakoda',
-                           image: 'images/zucchipakoda.png',
-                           category: 'appetizer',
-                           label:'',
-                           price:'1.99',
-                           description:'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce',
-                           comment: ''
-                        },
-                        {
-                           name:'Vadonut',
-                           image: 'images/vadonut.png',
-                           category: 'appetizer',
-                           label:'New',
-                           price:'1.99',
-                           description:'A quintessential ConFusion experience, is it a vada or is it a donut?',
-                           comment: ''
-                        },
-                        {
-                           name:'ElaiCheese Cake',
-                           image: 'images/elaicheesecake.png',
-                           category: 'dessert',
-                           label:'',
-                           price:'2.99',
-                           description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
-                           comment: ''
-                        }
-                               ];
-               $scope.toggleDetails = function() {
+           $scope.dishes= menuFactory.getDishes();
+      
+            $scope.toggleDetails = function() {
     $scope.showDetails = !$scope.showDetails;
 };
             
@@ -66,6 +30,47 @@
             };
      
         }])
+        
+        .controller('DishDetailController',['$scope','$stateParams','menuFactory', function($scope, $stateParams, menuFactory) {
+            
+            var dish =menuFactory.getDish(parseInt($stateParams.id,10));
+            
+            $scope.dish= dish;
+            
+        }])
+        
+        
+        .controller('DishCommentController', ['$scope', function($scope) {
+            
+            $scope.comment = {name:"", rating:5, comments:""};   
+       
+      
+            $scope.submitComment = function () {
+                 if(!$scope.commentForm.$pristine && $scope.commentForm.name.$error.required &&  $scope.commentForm.comments.$error.required){
+       console.log('incorrect form');
+                 }else{
+                //Step 2: This is how you record the date
+              $scope.date = new Date().toISOString();
+                
+                // Step 3: Push your comment into the dish's comment array
+                 $scope.dish.comments.push({                rating:$scope.comment.rating,
+                    comment:$scope.comment.comments, author:$scope.comment.name,
+                    date:$scope.date });
+                
+                //Step 4: reset your form to pristine
+               
+                $scope.commentForm.$setPristine();
+                
+                //Step 5: reset your JavaScript object that holds your comment
+                
+                  $scope.comment = {};   
+       
+           
+       }
+            }; 
+       
+        }])
+
         
         //ContactController and FeedbackController
            .controller('ContactController', ['$scope', function($scope) {

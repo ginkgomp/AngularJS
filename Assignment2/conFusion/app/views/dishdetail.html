@@ -3,16 +3,20 @@
     <div class="container">
         <div class="row row-content" ng-controller="DishDetailController">
             <div class="col-xs-12">
+               <button class="btn btn-xs btn-primary pull-right"
+                    type="button" ui-sref="app.menu">
+                    Back to Menu
+                </button>
                 <ul class="media-list">
                   <li class="media">
                     <div class="media-left">
                       <a href="#">
-                        <img class="media-object" src="../app/images/uthapizza.png" alt="Uthapizza">
+                        <img class="media-object" src="{{dish.image}}" alt="Uthapizza">
                       </a>
                     </div>
                     <div class="media-body">
-                        <h2 class="media-heading">Uthapizza <span class="label label-danger label-xs">Hot</span> <span class="badge">$4.99</span></h2>
-                      <p>A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.</p>
+                        <h2 class="media-heading">{{dish.name}} <span class="label label-danger label-xs">{{dish.label}}</span> <span class="badge">{{dish.price}}</span></h2>
+                      <p>{{dish.description}}</p>
                     </div>
                   </li>
                 </ul>
