@@ -23,3 +23,4 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 * Angular Factory, Service and Dependency Injection 
 - Angular Templates 
 * Angular ngRoute and Single Page Applications
+- Angular UI-Router for Single Page Applications
