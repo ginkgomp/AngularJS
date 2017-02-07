@@ -24,3 +24,10 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 - Angular Templates 
 * Angular ngRoute and Single Page Applications
 - Angular UI-Router for Single Page Applications
+
+:point_up: Assignment 3 Done.
+
+*****
+
+##Week #4:
+* Client-Server Communication
