@@ -31,3 +31,4 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 
 ##Week #4:
 * Client-Server Communication
+- Angular $http Service
