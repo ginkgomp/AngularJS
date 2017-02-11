@@ -33,3 +33,4 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 * Client-Server Communication
 - Angular $http Service
 * RESTful Services and Angular $resource
+- Angular Testing
