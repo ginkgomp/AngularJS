@@ -34,3 +34,4 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 - Angular $http Service
 * RESTful Services and Angular $resource
 - Angular Testing
+* Web Tools: Yo and Yeoman
