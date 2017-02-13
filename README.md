@@ -1,3 +1,5 @@
+:clap::clap::clap:This course already done!! [FROM Jan.16. TO Feb.12.]
+
 This repo is for Coursera Full stack web development.
 Hope I can keep working on this hands on exercise and finally finishing it, learning something from it!
 
@@ -35,3 +37,6 @@ Hope I can keep working on this hands on exercise and finally finishing it, lear
 * RESTful Services and Angular $resource
 - Angular Testing
 * Web Tools: Yo and Yeoman
+
+
+:point_up: Assignment 4 Done.
